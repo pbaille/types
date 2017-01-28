@@ -47,7 +47,7 @@
              (deftype ~c [xs]
                Object
                (toString [_] (pr-str* xs))
-               (equiv [_ o] (and #_(instance? ~c o) (= (.-xs o) xs)))
+               (equiv [_ o] (and (instance? ~c o) (= (.-xs o) xs)))
                (indexOf [_ x] (-indexOf xs x 0))
                (indexOf [_ x start] (-indexOf xs x start))
                (lastIndexOf [_ x] (-lastIndexOf xs x (count xs)))

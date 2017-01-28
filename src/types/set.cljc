@@ -141,6 +141,7 @@
 (macroexpand-1 '(settype Aze))
 
 (comment
+  (type (list 1 2))
   (settype Aze)
   (disj (aze #{1 2 3}) 2)
   (cljs.pprint/pprint (macroexpand-1 '(settype Aze))))
