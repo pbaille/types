@@ -41,7 +41,7 @@ Alpha quality, contributions are welcome
 
 ## Sets
 
-For set like type you can use `settype` instead of `vectype`
+For set like types you can use `settype` instead of `vectype`
 
 That's all
 
