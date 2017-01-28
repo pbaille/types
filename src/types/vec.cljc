@@ -3,28 +3,6 @@
                     [types.helpers :refer [get-options decline-name]])
      :cljs (:require-macros [types.vec :refer [vectype]])))
 
-(defn decline-name [n]
-  {:map-constr (symbol (str "map->" (name n)))
-   :transient-class (symbol (str "Transient" (name n)))
-   :transient-constr (symbol (str "Transient" (name n) "."))
-   :constr (symbol (str "->" (name n)))
-   :class n
-   :class-constr (symbol (str (name n) "."))})
-
-(defn camel->dash [s]
-  (let [[f & n] (re-seq #"[A-Za-z][a-z]*" s)]
-    (apply str (clojure.string/lower-case f)
-           (map #(str "-" (clojure.string/lower-case %)) n))))
-
-(defn get-options [n [x & xs]]
-  (merge
-    {:cfnsym
-     (symbol (camel->dash (name n)))
-     :cfnsym*
-     (symbol (str (camel->dash (name n)) "*"))
-     :prsym n}
-    (if (map? x) x {})))
-
 #?(:clj
    (defmacro vectype [n & body]
      (let [{:keys [cfnsym cfnsym* prsym]} (get-options n body)
@@ -207,8 +185,6 @@
                (print-method (symbol (str ~(name prsym) (.xs o#))) w#))
              (defn ~cfnsym [xs#] (~cc (vec xs#)))
              (defn ~cfnsym* [& xs#] (~cc (vec xs#)))))))))
-
-(macroexpand-1 '(vectype Aze))
 
 (comment
   (vectype Aze)

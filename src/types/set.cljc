@@ -22,7 +22,7 @@
                (-persistent! [_] (~cc (-persistent! xs)))
 
                ITransientSet
-               (-disjoin [_ key val] (~tcc (-disjoin xs key val)))
+               (-disjoin! [_ key] (~tcc (-disjoin! xs key)))
 
                ICounted
                (-count [_] (-count xs))
@@ -41,10 +41,10 @@
                (toString [_] (pr-str* xs))
                (equiv [_ o] (and (instance? ~c o) (= (.-xs o) xs)))
                (keys [coll] (~cc (keys xs)))
-               (entries [coll] (~cc (entries xs)))
-               (values [coll] (~cc (values xs)))
-               (has [coll k] (~cc (has xs)))
-               (forEach [coll f] (~cc (forEach xs)))
+               (entries [coll] (~cc (.entries xs)))
+               (values [coll] (~cc (.values xs)))
+               (has [coll k] (~cc (.has xs)))
+               (forEach [coll f] (~cc (.forEach xs)))
 
                ICloneable
                (-clone [_] (~cc xs))
@@ -97,8 +97,8 @@
 
                ~@body)
 
-             (defn ~cfnsym [coll] (~cc (vec coll)))
-             (defn ~cfnsym* [& args] (~cc (vec args)))))
+             (defn ~cfnsym [coll] (~cc (set coll)))
+             (defn ~cfnsym* [& args] (~cc (set args)))))
 
          (backtick/template
            (do
@@ -142,6 +142,6 @@
 
 (comment
   (settype Aze)
-  (aze [1 2 3])
+  (disj (aze #{1 2 3}) 2)
   (cljs.pprint/pprint (macroexpand-1 '(settype Aze))))
 
