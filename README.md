@@ -1,18 +1,49 @@
 # types
 
-Project description FIXME
+If you think that defrecord is great and you want the same for vectors and sets, you're in the right place.
 
-## Dev
+Alpha quality, contributions are welcome
 
-lein run -m clojure.main script/fig.clj
+## Declaration 
 
-visit localhost:5000
+```clojure
+;; def a new type called Foo that behave exactly like a PersistentVector
+(vectype Foo)
 
-## Prod
+;; it can be extended to whatever protocol you need to implement
+(vectype FOO 
+  IBark 
+  (bark [_] "woaf"))
+```
 
-lein cljsbuild once min
 
-open resources/public/prod.html
+## Instantiate
+
+```clojure
+;; unary constructor
+(foo [1 2 3])
+
+;; variadic constructor
+(foo* 1 2 3)
+
+;; if those contructor names doesn't suits you, you can rename it
+(vectype Foo 
+  {:cfnsym build-foo
+   :cfnsym* foo}
+  ;; your protocol impls 
+)
+
+;;then
+(build-foo [1 2 3])
+(foo 1 2 3) 
+
+```
+
+## Sets
+
+For set like type you can use `settype` instead of `vectype`
+
+That's all
 
 ## License
 
