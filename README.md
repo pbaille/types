@@ -1,6 +1,6 @@
 # types
 
-If you think that defrecord is great and you want the same for vectors and sets, you're in the right place.
+If you think that defrecord is great and you want the same for vectors, sets and lists, you're in the right place.
 
 Alpha quality, contributions are welcome
 
@@ -26,22 +26,12 @@ Alpha quality, contributions are welcome
 ;; variadic constructor
 (foo* 1 2 3)
 
-;; if those contructor names doesn't suits you, you can rename it
-(vectype Foo 
-  {:cfnsym build-foo
-   :cfnsym* foo}
-  ;; your protocol impls 
-)
-
-;;then
-(build-foo [1 2 3])
-(foo 1 2 3) 
-
 ```
 
 ## Sets
 
 For set like types you can use `settype` instead of `vectype`
+For set like types you can use `listtype`
 
 That's all
 
