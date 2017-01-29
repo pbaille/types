@@ -12,7 +12,7 @@
             :source-paths ["src" "script"]
             :cljsbuild {:builds [{:id           "min"
                                   :source-paths ["src"]
-                                  :compiler     {:main          'types.vec
+                                  :compiler     {:main          'types.core
                                                  :asset-path    "js/out"
                                                  :optimizations :advanced
                                                  :output-to     "resources/public/js/out/main.min.js"
