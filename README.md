@@ -2,6 +2,8 @@
 
 If you think that defrecord is great and you want the same for vectors, sets and lists, you're in the right place.
 
+I think the clojurescript side of things is more complete that the clojure side.
+
 Alpha quality, contributions are welcome
 
 ## Declaration 
@@ -24,7 +26,7 @@ Alpha quality, contributions are welcome
 ```
 
 
-## Instantiate
+## Instantiation
 
 ```clojure
 ;; unary constructors --------
