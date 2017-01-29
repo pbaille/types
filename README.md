@@ -11,29 +11,45 @@ Alpha quality, contributions are welcome
 (vectype Foo)
 
 ;; it can be extended to whatever protocol you need to implement
-(vectype FOO 
+(vectype Foo
   IBark 
   (bark [_] "woaf"))
+
+;; same with lists
+(listtype Bar)
+
+;; and sets 
+(settype Baz)
+
 ```
 
 
 ## Instantiate
 
 ```clojure
-;; unary constructor
-(foo [1 2 3])
+;; unary constructors --------
 
-;; variadic constructor
+(foo [1 2 3])
+;; => Foo[1 2 3]
+
+(bar [1 2 3])
+;; => Bar#{3 1 2}
+
+(baz [1 2 3])
+;; => Baz(1 2 3)
+
+;; variadic constructors -----
+
 (foo* 1 2 3)
+;; => Foo[1 2 3]
+
+(bar* 1 2 3)
+;; => Bar#{3 1 2}
+
+(baz* 1 2 3)
+;; => Baz(1 2 3)
 
 ```
-
-## Sets
-
-For set like types you can use `settype` instead of `vectype`
-For set like types you can use `listtype`
-
-That's all
 
 ## License
 
